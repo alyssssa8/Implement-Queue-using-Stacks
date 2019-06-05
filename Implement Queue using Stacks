@@ -1,0 +1,41 @@
+class MyQueue {
+private: 
+    stack<int>pushStack;
+    stack<int>popStack;   
+public:
+    /** Initialize your data structure here. */
+    MyQueue() {
+        
+    }
+    
+    /** Push element x to the back of queue. */
+    void push(int x) {
+        pushStack.push(x);
+        
+    }   
+    /** Removes the element from in front of queue and returns that element. */
+    int pop() {
+       if (popStack.empty())
+			populatePopStack();
+		int val = popStack.top();
+		popStack.pop();
+		return val;      
+    }    
+    /** Get the front element. */
+    int peek() {
+      if (popStack.empty())
+			populatePopStack();
+		return popStack.top();    
+    }   
+    /** Returns whether the queue is empty. */
+    bool empty() {
+        return (pushStack.empty() && popStack.empty());
+    }   
+  void populatePopStack() {
+		while (!pushStack.empty()) {
+			int val = pushStack.top();
+			pushStack.pop();
+			popStack.push(val);
+		}
+	}
+};
